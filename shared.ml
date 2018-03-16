@@ -858,7 +858,7 @@ let complexity_facto x =
 
 (***************************************************************)
 
-exception Break
+(*exception Break*)
 
 (***************************************************************)
 
@@ -1076,11 +1076,11 @@ let read_char ch =
 
 let read_string ch =
   let len = read_int ch in
-  let str = String.make len ' ' in
+  let bytes = Bytes.make len ' ' in
   for i = 0 to pred len do
-     str.[i] <- read_char ch
+    Bytes.set bytes i (read_char ch)
   done;
-  str
+  Bytes.to_string bytes
 
 
 (* DEBUG
