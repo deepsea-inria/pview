@@ -1,6 +1,6 @@
-% PASL log visualizer
-% Umut Acar, Arthur Charguéraud, Mike Rainey
-% 13 August 2014
+% The parallel log-file visualizer
+% Umut Acar; Arthur Charguéraud; Mike Rainey
+% Deepsea
 
 Introduction
 ============
@@ -10,7 +10,7 @@ For best results, run `make doc` and open `README.pdf`.
 Package dependencies
 --------------------
 
-Version 4.02.0 or higher of [ocaml](http://caml.inria.fr/) is 
+Version 4.06.0 or higher of [ocaml](http://caml.inria.fr/) is 
 required to build `pview`.
 
 Synopsis
@@ -63,7 +63,7 @@ Each processor shows up as a horizontal line. Every red rectangle corresponds
 to idle periods.
 
 Vertical blue lines correspond to the "phases", which are log events generated
-from lines in the PASL code of the form:
+from lines of the form:
 
 	 LOG_BASIC(ALGO_PHASE);
 
@@ -85,7 +85,7 @@ The value is shown near the top-left corner.
 Sample applications
 ===================
 
-From the PASL root folder, run:
+Now, run:
 
     cd example
     make -C ../tools/pview 
@@ -96,7 +96,7 @@ From the PASL root folder, run:
 For frequent use, you may add the pview folder to your path, e.g., adding the
 following line to the bottom `~/.bashrc`:
 
-    PATH=$PATH:~/pasl/tools/pview
+    PATH=$PATH:tools/pview
 
 Limitations
 ===========
@@ -107,6 +107,5 @@ tool is able to handle. This limit depends on the machine.
 See also
 ========
 
-The PASL web page is located at
-<http://deepsea.inria.fr/pasl/>
+<http://deepsea.inria.fr/>
 
