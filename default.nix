@@ -1,6 +1,7 @@
 { pkgs   ? import <nixpkgs> {},
   stdenv ? pkgs.stdenv,
-  fetchurl
+  fetchurl,
+  buildDocs ? false
 }:
 
 stdenv.mkDerivation rec {
@@ -12,17 +13,31 @@ stdenv.mkDerivation rec {
     sha256 = "16ca288f10101a7480112dc17f5526628a815509e1167fe70c760a03b24ffb16";
   };
 
-  buildInputs = with pkgs; [ ocaml ];  
+  buildInputs =
+    let
+      p = [ pkgs.ocaml ];
+      ext = [ pkgs.pandoc pkgs.texlive.combined.scheme-medium ];
+    in
+    if buildDocs then p ++ ext else p;
+
+  buildPhase =
+    if buildDocs then ''
+      make pview doc
+    ''
+    else ''
+      make pview
+    '';
 
   installPhase = ''
     mkdir -p $out/bin/
     cp pview $out/bin/
     mkdir -p $out/doc/
-    cp README.md $out/doc/
+    cp README.* $out/doc/
   '';
 
   meta = {
     description = "A tool to generate a utilization plot from the logging data of the run of a parallel program.";
+    license = "MIT";
     homepage = http://deepsea.inria.fr/;
   };
 }
