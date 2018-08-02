@@ -1,16 +1,16 @@
 { pkgs   ? import <nixpkgs> {},
   stdenv ? pkgs.stdenv,
-  fetchurl,
   buildDocs ? false
 }:
 
 stdenv.mkDerivation rec {
-  name = "pview-${version}";
-  version = "1.1";
+  name = "pview";
 
-  src = fetchurl {
-    url = "https://github.com/deepsea-inria/pview/archive/${version}.tar.gz";
-    sha256 = "16ca288f10101a7480112dc17f5526628a815509e1167fe70c760a03b24ffb16";
+  src = pkgs.fetchFromGitHub {
+    owner  = "deepsea-inria";
+    repo   = "pview";
+    rev    = "50843802393190055bebed9bc0960861d635201e";
+    sha256 = "0n36nyfix3an84i1f08iby03zjb6jai8rjr42pxbr2yzl2q9r9vq";
   };
 
   buildInputs =
